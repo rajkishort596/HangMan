@@ -1,5 +1,3 @@
-import React from "react";
-
 const HEAD = (
   <div
     style={{
@@ -87,19 +85,16 @@ const LEFT_LEG = (
   />
 );
 
-function HangmanDrawing() {
+const BODY_PARTS = [HEAD, BODY, RIGHT_ARM, LEFT_ARM, RIGHT_LEG, LEFT_LEG];
+
+type HangmanDrawingProps = {
+  numberOfGuesses: number;
+};
+
+export function HangmanDrawing({ numberOfGuesses }: HangmanDrawingProps) {
   return (
-    <div
-      style={{
-        position: "relative",
-      }}
-    >
-      {HEAD}
-      {BODY}
-      {RIGHT_ARM}
-      {LEFT_ARM}
-      {RIGHT_LEG}
-      {LEFT_LEG}
+    <div style={{ position: "relative" }}>
+      {BODY_PARTS.slice(0, numberOfGuesses)}
       <div
         style={{
           height: "50px",
@@ -120,17 +115,13 @@ function HangmanDrawing() {
       />
       <div
         style={{
-          width: "10px",
           height: "400px",
-          marginLeft: "120px",
+          width: "10px",
           background: "black",
+          marginLeft: "120px",
         }}
-      ></div>
-      <div
-        style={{ height: "10px", width: "250px", background: "black" }}
-      ></div>
+      />
+      <div style={{ height: "10px", width: "250px", background: "black" }} />
     </div>
   );
 }
-
-export default HangmanDrawing;
